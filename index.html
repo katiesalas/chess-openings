@@ -282,11 +282,12 @@
     display: flex;
     gap: 6px;
     flex-wrap: nowrap;
-    max-width: 400px;
+    width: 400px;
     overflow-x: auto;
     justify-content: flex-start;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
   }
   .notation-strip::-webkit-scrollbar { display: none; }
 
@@ -585,7 +586,7 @@
     }
 
     .notation-strip {
-      max-width: var(--bsz);
+      width: var(--bsz);
       margin-left: 20px;
     }
 
@@ -1277,7 +1278,9 @@ function renderNotation() {
     return `<span class="notation-pill ${cls}">${m.notation}</span>`;
   }).join('');
   const current = strip.querySelector('.current');
-  if (current) current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  if (current) {
+    strip.scrollLeft = current.offsetLeft - (strip.clientWidth / 2) + (current.offsetWidth / 2);
+  }
 }
 
 // ── INFO PANEL ───────────────────────────────────────────────────────────────
