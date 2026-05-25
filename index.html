@@ -51,6 +51,9 @@
     color: var(--gold);
     letter-spacing: 0.02em;
   }
+  .logo-pawn {
+    font-family: 'Apple Symbols', 'Segoe UI Symbol', 'Noto Sans Symbols 2', sans-serif;
+  }
 
   .mode-toggle {
     display: flex;
@@ -610,7 +613,7 @@
 <body>
 
 <header>
-  <div class="logo">♟ Openings Lab</div>
+  <div class="logo"><span class="logo-pawn">♟︎</span> Openings Lab</div>
   <div class="mode-toggle">
     <button class="mode-btn active" onclick="setMode('browse')">Browse</button>
     <button class="mode-btn" onclick="setMode('quiz')">Quiz</button>
