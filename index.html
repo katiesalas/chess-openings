@@ -1081,6 +1081,7 @@ const INIT_POSITION = {
 
 const WHITE_PIECES = new Set(['♔','♕','♖','♗','♘','♙']);
 const BLACK_PIECES = new Set(['♚','♛','♜','♝','♞','♟']);
+const WHITE_TO_FILLED = {'♔':'♚','♕':'♛','♖':'♜','♗':'♝','♘':'♞','♙':'♟'};
 
 let currentOpening = OPENINGS[0];
 let currentMoveIdx = 0;
@@ -1193,14 +1194,14 @@ function renderBoard(highlightFrom=null, highlightTo=null) {
       const key = f+r;
       const sq = document.getElementById(`sq-${key}`);
       if (!sq) continue;
-      sq.textContent = boardState[key] || '';
+      const piece = boardState[key];
+      sq.textContent = piece ? (WHITE_TO_FILLED[piece] || piece) : '';
       sq.classList.remove('highlighted','hint-sq','wrong-sq','clickable');
 
-      const piece = boardState[key];
       if (piece) {
-        sq.style.color = WHITE_PIECES.has(piece) ? '#f8f0d8' : '#1a1410';
+        sq.style.color = WHITE_PIECES.has(piece) ? '#fff8ec' : '#1a1410';
         sq.style.textShadow = WHITE_PIECES.has(piece)
-          ? '0 1px 2px rgba(0,0,0,0.8)'
+          ? '0 0 3px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,0.9)'
           : '0 1px 2px rgba(255,255,255,0.15)';
       } else {
         sq.style.color = '';
