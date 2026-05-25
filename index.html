@@ -142,7 +142,7 @@
 
   .opening-meta {
     font-size: 11px;
-    color: var(--muted);
+    color: var(--cream-dim);
     font-family: 'DM Mono', monospace;
   }
 
@@ -289,7 +289,7 @@
     padding: 3px 9px;
     border-radius: 4px;
     border: 1px solid var(--border);
-    color: var(--muted);
+    color: var(--cream-dim);
     background: var(--surface);
     transition: all 0.15s;
   }
@@ -1130,7 +1130,7 @@ function renderOpeningsList(activeId = OPENINGS[0].id) {
       <div class="opening-name"><span>${o.name}</span>${progressHtml}</div>
       <div class="opening-meta">
         <span class="tag tag-${o.style}">${o.style}</span>
-        <span style="opacity:0.5">${o.firstMoves}</span>
+        <span>${o.firstMoves}</span>
       </div>
     </div>`;
   }).join('');
