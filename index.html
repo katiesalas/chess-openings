@@ -20,8 +20,8 @@
     --white-piece: #f5edd8;
     --black-piece: #1a1410;
     --highlight: rgba(201,168,76,0.35);
-    --hint: rgba(100,200,100,0.4);
-    --wrong: rgba(220,60,60,0.4);
+    --hint: rgba(80,200,100,0.6);
+    --wrong: rgba(220,60,60,0.6);
     --text: #f0e6d3;
     --muted: #7a7060;
   }
@@ -407,25 +407,42 @@
   }
 
   .quiz-feedback {
-    padding: 0.75rem 1rem;
     border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.6;
     display: none;
   }
 
   .quiz-feedback.correct {
-    background: rgba(60,160,80,0.15);
-    border: 1px solid rgba(60,160,80,0.3);
-    color: #70d080;
+    background: rgba(60,160,80,0.18);
+    border: 1px solid rgba(60,160,80,0.5);
     display: block;
+    padding: 1rem;
   }
 
   .quiz-feedback.wrong {
-    background: rgba(200,60,60,0.15);
-    border: 1px solid rgba(200,60,60,0.3);
-    color: #e07070;
+    background: rgba(200,60,60,0.18);
+    border: 1px solid rgba(200,60,60,0.5);
     display: block;
+    padding: 1rem;
+  }
+
+  .quiz-verdict {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .quiz-feedback.correct .quiz-verdict { color: #7dd880; }
+  .quiz-feedback.wrong  .quiz-verdict { color: #e07070; }
+
+  .quiz-explanation {
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.65;
+  }
+  .quiz-explanation strong { color: var(--gold); }
+
+  @keyframes quizBtnPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.55); }
+    55%       { box-shadow: 0 0 0 7px rgba(201,168,76,0); }
   }
 
   .quiz-btn {
@@ -439,11 +456,12 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: background 0.15s;
   }
 
   .quiz-btn:hover { background: var(--gold-light); }
-  .quiz-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .quiz-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .quiz-btn.ready { animation: quizBtnPulse 1.4s ease-in-out infinite; }
 
   .score-display {
     font-family: 'DM Mono', monospace;
@@ -463,6 +481,124 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .fade-in { animation: fadeIn 0.25s ease; }
+
+  /* ── MOBILE (≤ 767px) ─────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    :root {
+      /* board scales to viewport, capped at the desktop 400px */
+      --bsz: min(400px, calc(100vw - 56px));
+    }
+
+    header {
+      padding: 0.875rem 1rem;
+    }
+    .mode-btn {
+      padding: 9px 14px;
+    }
+
+    /* ── Layout: vertical stack ── */
+    .main {
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+    }
+
+    /* ── Openings list → horizontal scrollable strip at top ── */
+    .openings-list {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0;
+      flex-shrink: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .openings-list::-webkit-scrollbar { display: none; }
+
+    .list-label { display: none; }
+
+    #openings-list-items {
+      display: flex;
+      flex-direction: row;
+      padding: 0.5rem;
+      gap: 0.4rem;
+      width: max-content;
+    }
+
+    .opening-item {
+      flex-shrink: 0;
+      width: 140px;
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      min-height: 56px;
+    }
+    .opening-item.active {
+      border-left-color: transparent;
+      border-bottom-color: var(--gold);
+    }
+    .opening-item.active .opening-name {
+      color: var(--gold-light);
+    }
+
+    /* ── Board: scale to fit screen width ── */
+    .center {
+      padding: 1rem;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    /* shift board-wrap right so rank labels (at left: -18px) stay visible */
+    .board-wrap {
+      margin-left: 20px;
+    }
+
+    #board {
+      width: var(--bsz);
+      height: var(--bsz);
+    }
+
+    .sq {
+      width: calc(var(--bsz) / 8);
+      height: calc(var(--bsz) / 8);
+      font-size: calc(var(--bsz) / 10);
+    }
+
+    .board-labels-file {
+      width: var(--bsz);
+    }
+
+    .board-labels-rank {
+      height: var(--bsz);
+    }
+
+    .notation-strip {
+      max-width: var(--bsz);
+    }
+
+    /* ── Controls: larger tap targets ── */
+    .ctrl-btn {
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+    }
+
+    /* ── Info panel: below board, full width ── */
+    .info-panel {
+      border-left: none;
+      border-top: 1px solid var(--border);
+      overflow-y: visible;
+      padding: 1.25rem 1rem;
+    }
+
+    /* ── Quiz buttons: bigger tap targets ── */
+    .quiz-btn {
+      padding: 14px;
+      font-size: 15px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1217,11 +1353,19 @@ function showQuizFeedback(correct, move) {
 
   feedbackEl.className = `quiz-feedback ${correct ? 'correct' : 'wrong'}`;
   feedbackEl.innerHTML = correct
-    ? `<strong>✓ Correct!</strong> ${move.explanation}`
-    : `<strong>✗ Not quite.</strong> The move was <strong>${move.notation}</strong> — ${move.explanation}`;
+    ? `<div class="quiz-verdict">✓ Correct!</div>
+       <div class="quiz-explanation">${move.explanation}</div>`
+    : `<div class="quiz-verdict">✗ Not quite</div>
+       <div class="quiz-explanation">The move was <strong>${move.notation}</strong> — ${move.explanation}</div>`;
 
   const btn = panel.querySelector('.quiz-btn');
-  if (btn) { btn.disabled = false; btn.textContent = 'Next move →'; }
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = 'Next move →';
+    btn.classList.add('ready');
+  }
+
+  feedbackEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function renderQuizPanel() {
