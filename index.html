@@ -219,6 +219,7 @@
     align-items: center;
     justify-content: center;
     font-size: 32px;
+    font-family: 'Apple Symbols', 'Segoe UI Symbol', 'Noto Sans Symbols 2', sans-serif;
     cursor: default;
     transition: background 0.15s;
     position: relative;
@@ -1195,7 +1196,7 @@ function renderBoard(highlightFrom=null, highlightTo=null) {
       const sq = document.getElementById(`sq-${key}`);
       if (!sq) continue;
       const piece = boardState[key];
-      sq.textContent = piece ? (WHITE_TO_FILLED[piece] || piece) : '';
+      sq.textContent = piece ? (WHITE_TO_FILLED[piece] || piece) + '︎' : '';
       sq.classList.remove('highlighted','hint-sq','wrong-sq','clickable');
 
       if (piece) {
