@@ -21,13 +21,20 @@ Most chess resources are either too shallow (just move lists) or too deep (grand
 | Opening | Style | Key idea |
 |---|---|---|
 | Sicilian Defense | Aggressive | Asymmetric counterplay from move one |
+| Sicilian Najdorf | Aggressive | The most theoretically complex opening in chess |
+| King's Gambit | Aggressive | Sacrifice a pawn to seize the center and attack fast |
+| Scotch Game | Aggressive | Strike in the center early, sidestep Ruy López theory |
 | Ruy López | Positional | Long-term pressure on the e5 pawn |
-| King's Indian Defense | Dynamic | Let White build a center, then attack it |
+| Italian Game | Positional | Fast development targeting f7 |
+| Nimzo-Indian Defense | Positional | Pin the knight, stop White's ideal center |
+| English Opening | Positional | Control the center indirectly, stay flexible |
 | Queen's Gambit | Solid | Offer a pawn to control the center |
 | French Defense | Solid | Solid pawn chain with queenside counterplay |
-| Italian Game | Positional | Fast development targeting f7 |
-| London System | Solid | Solid setup, develop bishop before locking it in |
+| London System | Solid | Reliable setup, develop bishop before locking it in |
 | Caro-Kann Defense | Solid | Solid center with an active bishop — unlike the French |
+| King's Indian Defense | Dynamic | Let White build a center, then attack it |
+| Dutch Defense | Dynamic | Fight for e4 from move one against 1.d4 |
+| Pirc Defense | Dynamic | Invite White's center, then undermine it from the flanks |
 
 ---
 
@@ -53,10 +60,8 @@ No install step. No build step. Just open the file.
 
 ## What's next
 
-- [ ] More openings (King's Gambit, Nimzo-Indian, Dutch Defense)
 - [ ] Spaced repetition — surface openings you got wrong more often
 - [ ] Opening explorer — filter by style (aggressive / solid / dynamic)
-- [ ] Mobile layout
 
 ---
 
