@@ -278,10 +278,14 @@
   .notation-strip {
     display: flex;
     gap: 6px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     max-width: 400px;
-    justify-content: center;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
+  .notation-strip::-webkit-scrollbar { display: none; }
 
   .notation-pill {
     font-family: 'DM Mono', monospace;
@@ -577,6 +581,7 @@
 
     .notation-strip {
       max-width: var(--bsz);
+      margin-left: 20px;
     }
 
     /* ── Controls: larger tap targets ── */
@@ -1266,6 +1271,8 @@ function renderNotation() {
     const cls = i < currentMoveIdx ? 'past' : i === currentMoveIdx ? 'current' : '';
     return `<span class="notation-pill ${cls}">${m.notation}</span>`;
   }).join('');
+  const current = strip.querySelector('.current');
+  if (current) current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 // ── INFO PANEL ───────────────────────────────────────────────────────────────
